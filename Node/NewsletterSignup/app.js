@@ -5,7 +5,7 @@ const https = require("https");
 
 const app = express();
 
-var myKey = config.key;
+//var myKey = keys.key;
 
 
 app.use(express.static("public"));
@@ -66,7 +66,7 @@ app.post("/failure", function(req, res) {
 
 })
 
-app.listen(process.env.PORT, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("Server is running on port 3000");
 
 })
