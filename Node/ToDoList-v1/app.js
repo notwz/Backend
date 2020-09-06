@@ -9,17 +9,39 @@ app.get("/", function (req, res) {
     //res.sendFile(__dirname + "./index.html");
 
     var currentDay = new Date().getDay();
-    var day= "";
-    if (currentDay === 6 || currentDay === 0) {
-        day = "Weekend";
+    var day = "";
+    switch (currentDay) {
+        case 0:
+            day = "Sunday"
+            break;
+        case 1:
+            day = "Monday"
+            break;
+        case 2:
+            day = "Tuesday"
+            break;
+        case 3:
+            day = "Wednesday"
+            break;
+        case 4:
+            day = "Thursday"
+            break;
+        case 5:
+            day = "Friday"
+            break;
+        case 6:
+            day = "Saturday"
+            break;
+
+        default:
+            break;
     }
-    else {
-        day = "Weekday";
-    }
-    res.render("list", {kindOfDay: day});
+    res.render("list", {
+        kindOfDay: day
+    });
 
 });
 
-app.listen(3000, function(){
+app.listen(3000, function () {
     console.log("Server on 3000")
 });
