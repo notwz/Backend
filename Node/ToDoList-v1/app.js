@@ -1,9 +1,13 @@
-const express = require("express")
-const bodyParser = require("body-parser")
+const express = require("express");
+const bodyParser = require("body-parser");
 
-const app = express()
+const app = express();
 
-app.set('view engine', 'ejs')
+var items = ["Buy food", "Cook food", "Eat food"];
+
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.set('view engine', 'ejs');
 
 app.get("/", function (req, res) {
     //res.sendFile(__dirname + "./index.html");
@@ -15,13 +19,18 @@ app.get("/", function (req, res) {
         day: 'numeric',
         month: 'long'
     };
-    
+
     var day = today.toLocaleDateString("en-US", options);
     
-    res.render("list", {
-        kindOfDay: day
-    });
+    res.render("list", {kindOfDay: day,newListItems: items });
 
+});
+
+app.post("/", function (req, res) {
+    var item = req.body.newItem;
+    items.push(item);
+
+    res.redirect("/");
 });
 
 app.listen(3000, function () {
