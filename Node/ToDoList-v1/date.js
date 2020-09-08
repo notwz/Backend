@@ -1,17 +1,28 @@
 
-module.exports = getDate;
+// noob way 
+module.exports.getDay = getDay; 
 
 
-function getDate() {
-    let today = new Date();
+//pro way, shortcut can bypass module.exports - dont need it
+exports.getDate = function () {
+    const today = new Date();
 
-    let options = {
+    const options = {
         weekday: 'long',
         day: 'numeric',
         month: 'long'
     };
 
-    let day = today.toLocaleDateString("en-US", options);
+    return day = today.toLocaleDateString("en-US", options);
+}
 
-    return day;
+function getDay() {
+    let today = new Date();
+
+    let options = {
+        weekday: 'long'
+    };
+
+    return day = today.toLocaleDateString("en-US", options);
+
 }
