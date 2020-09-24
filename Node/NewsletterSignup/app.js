@@ -33,12 +33,16 @@ app.post("/", function (req, res) {
     }]
   };
 
+  //mailchimp API
+
   const jsonData = JSON.stringify(data);
   const url = "https://us17.api.mailchimp.com/3.0/lists/e2bf4a9467";  
   const options = {
     method: "POST",
     auth: "will1:" + myKey
   };
+
+
 
   const request = https.request(url, options, function (response) {
     if (response.statusCode === 200) {
